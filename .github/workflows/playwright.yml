@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0 2 * * *"   # runs daily at 2 AM
+    - cron: "0 2 * * *"
 
 jobs:
   tests:
@@ -31,8 +31,11 @@ jobs:
       - name: Install Chromium
         run: npx playwright install chromium
 
-      # 5. Run tests
+      # 5. Run tests using GitHub Secrets
       - name: Run Playwright tests
+        env:
+          TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
         run: npx playwright test
 
       # 6. Upload HTML report

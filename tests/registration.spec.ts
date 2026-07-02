@@ -1,10 +1,14 @@
 import { test, expect } from '@playwright/test';
 
 test('Registration', async ({ page }) => {
+
+    const username = process.env.TEST_USERNAME as string;
+    const password = process.env.TEST_PASSWORD as string;
+
     await page.goto('https://practicetestautomation.com/practice-test-login/');
 
-    await page.locator('#username').fill('student');
-    await page.locator('#password').fill('Password123');
+    await page.locator('#username').fill(username);
+    await page.locator('#password').fill(password);
     await page.locator('#submit').click();
 
     await expect(page).toHaveURL(

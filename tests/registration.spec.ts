@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test('Registration', async ({ page }) => {
 
-    const username = process.env.TEST_USERNAME as string;
-    const password = process.env.TEST_PASSWORD as string;
+    const username = 'student';
+    const password = 'Password123';
 
     await page.goto('https://practicetestautomation.com/practice-test-login/');
 
@@ -15,6 +15,5 @@ test('Registration', async ({ page }) => {
         'https://practicetestautomation.com/logged-in-successfully/'
     );
 
-    // Verify successful login
     await expect(page.locator('h1')).toHaveText('Logged In Successfully');
 });

@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/Sham-coder16/day22-login-test.git'
             }
@@ -15,13 +14,13 @@ pipeline {
             }
         }
 
-        stage('Install Playwright Browsers') {
+        stage('Install Browsers') {
             steps {
-                bat 'npx playwright install --with-deps'
+                bat 'npx playwright install'
             }
         }
 
-        stage('Run Playwright Tests') {
+        stage('Run Tests') {
             steps {
                 bat 'npx playwright test'
             }
